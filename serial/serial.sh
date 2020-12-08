@@ -27,11 +27,11 @@ g++ -g -Wall -std=c++11 shellsort_serial.cpp -o shell
 	do
 			for size in 1000000000 2000000000 #tamanho do problema
 			do   	
-				echo -e "\n$size\t\t\c" >> "serial_time.txt" 
+				echo -e "\n$size\t\t" >> "serial_core.txt" 
 
 				for tentativa in $(seq $tentativas) #Cria uma vetor de 1 a "tentativas"
 				do
-					./shell $size #
+					./shell $size >> "serial_time.txt"
 				done
 			done
 
