@@ -3,6 +3,8 @@
 #include <cstdlib>
 #include <iomanip>
 #include <chrono>
+#include <algorithm>
+#include <vector>
 
 
 // ----------------------------------------------------------------------------------------------------------------
@@ -118,7 +120,7 @@ int main ( int argc, char *argv[] )
 
     long int * arr = gen_array(size); // Generating a random array.
     //print( arr, size ); // printing.
-
+    
     std::chrono::steady_clock::time_point START = std::chrono::steady_clock::now();
     shell( arr, size ); // sorting.
     std::chrono::steady_clock::time_point STOP = std::chrono::steady_clock::now();
