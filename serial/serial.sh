@@ -20,13 +20,14 @@
 
 #Loop principal de execuções. São 10 tentativas
 
+module load compilers/gnu/8.3
 g++ -g -Wall -std=c++0x shellsort_serial.cpp -o shell
 
-	tentativas=10 #Quantas vezes o código será executado
+	tentativas=1 #Quantas vezes o código será executado
 
 	for cores in 1 #números de cores utilizados
 	do
-			for size in 30000000 60000000 #tamanho do problema
+			for size in 30000000 60000000 120000000 150000000 #tamanho do problema
 			do   	
 				echo -e "\n$size\t\t" >> "serial_core.txt" 
 
