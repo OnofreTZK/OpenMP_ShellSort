@@ -19,7 +19,7 @@
 
 #Loop principal de execuções. São 10 tentativas
 
-g++ -g -Wall -std=c++11 shellsort_serial.cpp -o shell
+g++ -g -Wall -std=c++0x shellsort_serial.cpp -o shell
 
 	tentativas=10 #Quantas vezes o código será executado
 
