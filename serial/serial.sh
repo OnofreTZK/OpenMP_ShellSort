@@ -6,7 +6,8 @@
 #SBATCH --error=shellSortError.err
 #SBATCH --time=0-04:0
 #SBATCH --hint=compute_bound 
-
+#SBATCH --mail-user=onofret7@ufrn.edu.br
+#SBATCH --mail-type=ALL
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=1
@@ -25,7 +26,7 @@ g++ -g -Wall -std=c++0x shellsort_serial.cpp -o shell
 
 	for cores in 1 #números de cores utilizados
 	do
-			for size in 1000000000 2000000000 #tamanho do problema
+			for size in 30000000 60000000 #tamanho do problema
 			do   	
 				echo -e "\n$size\t\t" >> "serial_core.txt" 
 
