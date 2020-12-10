@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <iomanip>
 #include <chrono>
+#include <omp.h>
 
 
 // ----------------------------------------------------------------------------------------------------------------
@@ -93,33 +94,69 @@ void print( long int * arr, long int size )
 
 
 // ----------------------------------------------------------------------------------------------------------------
+// Verifying the number of threads
+// ----------------------------------------------------------------------------------------------------------------
+bool valid_core_number( int coreNum )
+{
+    if( coreNum == 4 )
+    {
+        return true;
+    }
+    else if( coreNum == 8 )
+    {
+        return true;
+    }
+    else if( coreNum == 16 )
+    {
+        return true;
+    }
+    else if( coreNum == 32 )
+    {
+        return true;
+    }
+
+
+    return false:
+}
+
+
+// ----------------------------------------------------------------------------------------------------------------
 // Main
 // ----------------------------------------------------------------------------------------------------------------
 int main ( int argc, char *argv[] )
 {
 
     // Processing args.
-    if( argc != 2 )
+    if( argc != 3 )
     {
-        std::cout << "Please, give the array size!\n";
+        std::cout << "Please, give the number of threads and the array size!\n";
 
         return EXIT_FAILURE;
     }
 
-    if( argc == 2 and atol(argv[1]) < 1 )
+    if( argc == 3 and atol(argv[2]) < 1 )
     {
         std::cout << "Invalid size!\n";
 
         return EXIT_FAILURE;
     }
+
+    if( argc == 3 and !valid_core_number( atoi(argv[1]) ) )
+    {
+        std::cout << "Invalid number of threads, please use -> [4, 8, 16, 32]\n";
+        return EXIT_FAILURE;
+    }
     // -------------------------------------------------
 
-    long int size = atol(argv[1]); // Array size.
+    int threadsNum = atoi(argv[1]); // Number of threads.
+
+    long int size = atol(argv[2]); // Array size.
 
     long int * arr = gen_array(size); // Generating a random array.
     //print( arr, size ); // printing.
     
     std::chrono::steady_clock::time_point START = std::chrono::steady_clock::now();
+
     shell( arr, size ); // sorting.
     std::chrono::steady_clock::time_point STOP = std::chrono::steady_clock::now();
 

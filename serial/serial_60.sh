@@ -1,10 +1,10 @@
 #!/bin/bash
 
 #SBATCH --partition=cluster
-#SBATCH --job-name=shellSort
-#SBATCH --output=shellSort.out
-#SBATCH --error=shellSortError.err
-#SBATCH --time=0-04:0
+#SBATCH --job-name=shellSort60
+#SBATCH --output=shellSort60.out
+#SBATCH --error=shellSortError60.err
+#SBATCH --time=0-06:0
 #SBATCH --hint=compute_bound 
 #SBATCH --mail-user=onofret7@ufrn.edu.br
 #SBATCH --mail-type=ALL
@@ -23,21 +23,20 @@
 module load compilers/gnu/8.3
 g++ -g -Wall -std=c++0x shellsort_serial.cpp -o shell
 
-	tentativas=1 #Quantas vezes o código será executado
+	tentativas=10 #Quantas vezes o código será executado
 
 	for cores in 1 #números de cores utilizados
 	do
-			for size in 30000000 60000000 120000000 150000000 #tamanho do problema
+			for size in 60000000 #tamanho do problema
 			do   	
-				echo -e "\n$size\t\t" >> "serial_core.txt" 
+				echo -e "\n$size\t\t" >> "serial_60_core.txt" 
 
 				for tentativa in $(seq $tentativas) #Cria uma vetor de 1 a "tentativas"
 				do
-					./shell $size >> "serial_time.txt"
+					./shell $size >> "serial_60_time.txt"
 				done
 			done
 
 	done
 	
 	exit 
-
