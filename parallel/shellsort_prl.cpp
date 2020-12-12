@@ -51,20 +51,22 @@ void swap( long int * a, long int * b)
 // ----------------------------------------------------------------------------------------------------------------
 // Shell sort
 // ----------------------------------------------------------------------------------------------------------------
-void shell( long int * arr, long int size )
+void shell( long int * arr, long int size, int threads )
 {
+    long int i, itr;
+
 
     //GAP -> the distance between the values that will be swapped like an insertion sort.
 
     for( long int gap = size/2; gap > 0; gap /= 2 )
     {
+        #pragma omp parallel for private(i, itr) shared(arr, gap, size) \
+        default(none) num_threads(threads)
         // Insertion sort
-        for( long int i = gap; i < size; i++ )
+        for( i = gap; i < size; i++ )
         {
 
             long int aux = arr[i];
-
-            long int itr;
 
             for( itr = i; itr >= gap && arr[ itr - gap ] > aux; itr -= gap )
             {
@@ -116,7 +118,7 @@ bool valid_core_number( int coreNum )
     }
 
 
-    return false:
+    return false;
 }
 
 
@@ -156,8 +158,7 @@ int main ( int argc, char *argv[] )
     //print( arr, size ); // printing.
     
     std::chrono::steady_clock::time_point START = std::chrono::steady_clock::now();
-
-    shell( arr, size ); // sorting.
+    shell( arr, size, threadsNum ); // sorting.
     std::chrono::steady_clock::time_point STOP = std::chrono::steady_clock::now();
 
     auto timer = (STOP - START);
