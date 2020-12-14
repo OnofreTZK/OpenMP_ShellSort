@@ -155,7 +155,7 @@ int main ( int argc, char *argv[] )
     long int size = atol(argv[2]); // Array size.
 
     long int * arr = gen_array(size); // Generating a random array.
-    //print( arr, size ); // printing.
+    print( arr, size ); // printing.
     
     std::chrono::steady_clock::time_point START = std::chrono::steady_clock::now();
     shell( arr, size, threadsNum ); // sorting.
@@ -165,7 +165,7 @@ int main ( int argc, char *argv[] )
 
     double final_time = std::chrono::duration< double > (timer).count();
 
-    //print( arr, size ); // printing after sort.
+    print( arr, size ); // printing after sort.
 
     delete[] arr; // freeing memory.
 
