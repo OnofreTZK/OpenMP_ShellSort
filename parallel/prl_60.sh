@@ -4,7 +4,7 @@
 #SBATCH --job-name=shellSort60
 #SBATCH --output=shellSort60.out
 #SBATCH --error=shellSortError60.err
-#SBATCH --time=0-7:0
+#SBATCH --time=0-20:0
 #SBATCH --hint=compute_bound 
 #SBATCH --mail-user=onofret7@ufrn.edu.br
 #SBATCH --mail-type=ALL
